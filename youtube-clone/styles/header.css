@@ -53,7 +53,6 @@
 }
 
 .search-bar::placeholder {
-  font-family: Roboto, Arial;
   font-size: 16px;
 }
 
@@ -95,7 +94,6 @@
 .panel-menu-icon-container .tooltip, 
 .notifications-icon-container .tooltip,
 .my-channel-icon-container .tooltip {
-  font-family: Roboto, Arial;
   position: absolute;
   background-color: gray;
   border-radius: 2px;
@@ -160,7 +158,6 @@
 }
 
 .notifications-count {
-  font-family: Roboto, Arial;
   font-size: 11px;
   border-radius: 10px;
   border-style: solid;
