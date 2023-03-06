@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      css grid practice
+    </title>
+  </head>
+  <body>
+    <div style="
+      display: grid;
+      grid-template-columns: 100px 100px;
+    ">
+      <div style="background-color: lightblue;">div 1</div>
+      <div style="background-color: lightpink;">div 2</div>
+    </div>
+
+    <div style="
+      display: grid;
+      grid-template-columns: 100px 100px 200px;
+      margin-top: 10px;
+    ">
+      <div style="background-color: lightblue;">div 1</div>
+      <div style="background-color: lightpink;">div 2</div>
+      <div style="background-color: lightgreen;">div 3</div>
+      <div style="background-color: lightpink;">New row</div>
+    </div>
+
+    <div style="
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      margin-top: 10px;
+    ">
+      <div style="background-color: lightblue;">div 1</div>
+      <div style="background-color: lightpink;">1fr</div>
+    </div>
+
+    <div style="
+      display: grid;
+      grid-template-columns: 100px 1fr 2fr;
+      margin-top: 10px;
+    ">
+      <div style="background-color: lightblue;">div 1</div>
+      <div style="background-color: lightpink;">1fr</div>
+      <div style="background-color: lightgreen;">2fr</div>
+    </div>
+
+    <div style="
+      display: grid;
+      column-gap: 10px;
+      row-gap: 30px;
+      height: 200px;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-top: 10px;
+    ">
+      <div style="background-color: lightblue;">1fr</div>
+      <div style="background-color: lightpink;">1fr</div>
+      <div style="background-color: lightgreen;">1fr</div>
+      <div style="background-color: lightpink;">1fr</div>
+      <div style="background-color: lightgreen;">1fr</div>
+      <div style="background-color: lightblue;">1fr</div>
+    </div>
+
+
+  </body>
+</html> 
