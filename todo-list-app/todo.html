@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="title-container">
+      TASKS
+    </div>
+    <div class="list-title-container">
+      My TODO list
+    </div>
+    <section class="input-section">
+      <input class="input-date" id="date-picker" type="date" />
+      <button class="add-button" onclick="handleOnClickAdd()">＋</button>
+      <input class="input-todo" id="todo-title" type="text" placeholder="Input new task name"/>
+    </section>
+    <div class="todo-list" id="todo-list"></div>
+
+    <script>
+      // MODEL Section
+      let todos;
+      const savedTodos = JSON.parse(localStorage.getItem("todos"))
+
+      if (Array.isArray(savedTodos)) {
+        todos = savedTodos
+
+      } else {
+        todos = [
+          {
+            title: "Get grocerires",
+            dueDate: "2023-11-11",
+            id: "id1",
+          },
+          {
+            title: "Wash car",
+            dueDate: "2023-11-11",
+            id: "id2",
+          },
+          {
+            title: "Make dinner",
+            dueDate: "2023-11-11",
+            id: "id3",
+          },
+        ];
+      }
+      // Creates a todo
+      const createTodo = (title, dueDate) => {
+        const id = "" + new Date().getTime();
+        todos.push({
+          title: title,
+          dueDate: dueDate,
+          id: id,
+        });
+        saveTodos()
+      }
+      // Deletes a todo
+      const removeTodo = (deleteButtonID) => {
+        todos = todos.filter(function (todo) {
+          if (todo.id === deleteButtonID) return false
+          return true;
+        });
+        saveTodos()
+      }
+
+      // Deletes a todo
+      const saveTodos = () => {
+        localStorage.setItem("todos", JSON.stringify(todos))
+      }
+      render();
+
+
+      // CONTROLLER Section
+      function handleOnClickAdd() {
+        const textBox = document.getElementById("todo-title");
+        const title = textBox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dueDate = datePicker.value;
+        createTodo(title, dueDate)
+        render();
+      }
+
+      function handleOnClickDelete(event) {
+        const deleteButtonID = event.target.id;
+        removeTodo(deleteButtonID)
+        render();
+      }
+
+      // VIEW Section
+      function render() {
+        // reset our list
+        document.getElementById("todo-list").innerHTML = "";
+        todos.forEach(function (todo) {
+          const todoRow = document.createElement("div");
+          const task = document.createElement("span");
+          const date = document.createElement("span");
+          const deleteButton = document.createElement("button");
+          
+          todoRow.classList.add("todo-row")
+          task.classList.add("task")
+          date.classList.add("date")
+
+          task.innerText = todo.title
+          date.innerText = todo.dueDate
+
+          deleteButton.classList.add("delete-button")
+          deleteButton.innerText = `ｘ`;
+          deleteButton.onclick = handleOnClickDelete;
+          deleteButton.id = todo.id;
+          
+          todoRow.appendChild(date);
+          todoRow.appendChild(deleteButton);
+          todoRow.appendChild(task);
+          
+          const todoList = document.getElementById("todo-list");
+          todoList.appendChild(todoRow);
+        });
+      }
+    </script>
+  </body>
+</html>
